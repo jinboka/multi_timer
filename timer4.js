@@ -22,6 +22,8 @@ const OVERTIMER_st4 = "overTimerStart4";
 var TimeId4;
 const OVERTIME_LS4 = "overLs4";
 const COUNT_LS4 = "count_ls4";
+const timeSecLS4 = "timeSecLS4"
+
 var audioArror4;
 var foraudioInterval4;
 var pousedAudio4;
@@ -39,6 +41,8 @@ function count4(){
     if(time4 > 0){
        if(count_ls4 == true){
            time4--;
+           localStorage.setItem(timeSecLS4,time4);
+
             console.log(time4);
            form4.classList.add(BLIND4);
            var excutehour4 = Math.floor(time4/3600);
@@ -171,6 +175,8 @@ function handleReset4(){
     
     localStorage.removeItem(TIME_LS4);
     localStorage.removeItem(OVERTIME_LS4);
+    localStorage.removeItem(timeSecLS4);
+
     
     timer4.innerHTML="00:00:00";
     
@@ -198,9 +204,9 @@ function handlestBT4(){
   timerStop4.classList.add(SHOW4);
     TimeId4 = setInterval(count4,1000);
     stBT4.classList.toggle(SHOW4);
-    var forAudioStart4 = parseInt(localStorage.getItem(TIME_LS4));
+    var forAudioStart4 = parseInt(localStorage.getItem(timeSecLS4));
     audioStart4 = setTimeout(audioPlay4,forAudioStart4*1000+1000);
-    foraudioInterval4 = setTimeout(handleAudioInterval4,forAud3oStart4*1000+1000);
+    foraudioInterval4 = setTimeout(handleAudioInterval4,forAudioStart4*1000+1000);
     console.log(forAudioStart4);
 }
 

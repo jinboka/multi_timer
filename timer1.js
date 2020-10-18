@@ -22,6 +22,7 @@ const OVERTIMER_st = "overTimerStart";
 var TimeId;
 const OVERTIME_LS = "overLs";
 const COUNT_LS = "count_ls";
+const timeSecLS = "timeSecLS"
 var audioArror;
 var foraudioInterval;
 var pousedAudio;
@@ -39,6 +40,7 @@ function count(){
     if(time > 0){
        if(count_ls == true){
            time--;
+           localStorage.setItem(timeSecLS,time);
             console.log(time);
            form.classList.add(BLIND);
            var excuteHour = Math.floor(time/3600);
@@ -95,6 +97,7 @@ function saveTime(){
 
       var titleInput = TITLE_INPUT.value;
       localStorage.setItem(title_LS,titleInput);
+     
       time =  Number(hour.value)*3600+ Number(minute.value*60,) +Number(second.value);
     
       
@@ -106,7 +109,8 @@ function saveTime(){
           reset.classList.remove(SHOW);
           
         }
-        else{audioStart = setTimeout(audioPlay,time*1000);
+        else{
+          audioStart = setTimeout(audioPlay,time*1000);
         form.classList.add(BLIND);
         counting();
         localStorage.setItem(OVERTIME_LS,JSON.stringify(true));
@@ -161,7 +165,8 @@ function handleReset(){
     OVER_TIMER_CSS.classList.remove(OVERTIMER_st);
     
       localStorage.removeItem(title_LS);
-      localStorage.removeItem(COUNT_LS );
+      localStorage.removeItem(COUNT_LS);
+      localStorage.removeItem(timeSecLS);
 
     
     clearTimeout(overTimeId);  
@@ -202,11 +207,11 @@ function handlestBT(){
   timerStop.classList.add(SHOW);
      TimeId = setInterval(count,1000);
     stBT.classList.toggle(SHOW);
-    var forAudioStart = parseInt(localStorage.getItem(TIME_LS));
+    var forAudioStart = parseInt(localStorage.getItem(timeSecLS));
     audioStart = setTimeout(audioPlay,forAudioStart*1000+1000);
     foraudioInterval = setTimeout(handleAudioInterval,forAudioStart*1000+1000);
     console.log(forAudioStart);
-}
+  }
 
 
 function handleSumbit(event){

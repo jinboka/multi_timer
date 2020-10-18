@@ -22,6 +22,7 @@ const OVERTIMER_st2 = "overTimerStart2";
 var TimeId2;
 const OVERTIME_LS2 = "overLs2";
 const COUNT_LS2 = "count_ls2";
+const timeSecLS2 = "timeSecLS2";
 var audioArror2;
 var foraudioInterval2;
 var pousedAudio2;
@@ -39,6 +40,7 @@ function count2(){
     if(time2 > 0){
        if(count_ls2 == true){
            time2--;
+           localStorage.setItem(timeSecLS2,time2);
             console.log(time2);
            form2.classList.add(BLIND2);
            var excuteHour2 = Math.floor(time2/3600);
@@ -162,6 +164,7 @@ function handleReset2(){
     
       localStorage.removeItem(title_LS2);
       localStorage.removeItem(COUNT_LS2);
+      localStorage.removeItem(timeSecLS2);
 
     
     clearTimeout(overTimeId2);  
@@ -196,13 +199,13 @@ function handleReset2(){
 
 
 function handleAudioInterval2(){
- pousedAudi2=setInterval(audioPlay2,1000);
+ pousedAudio2=setInterval(audioPlay2,1000);
 }
 function handlestBT2(){
   timerStop2.classList.add(SHOW2);
      TimeId2 = setInterval(count2,1000);
-    stB2T.classList.toggle(SHOW2);
-    var forAudioStart2 = parseInt(localStorage.getItem(TIME_LS2));
+    stBT2.classList.toggle(SHOW2);
+    var forAudioStart2 = parseInt(localStorage.getItem(timeSecLS2));
     audioStart2 = setTimeout(audioPlay2,forAudioStart2*1000+1000);
     foraudioInterval2 = setTimeout(handleAudioInterval2,forAudioStart2*1000+1000);
     console.log(forAudioStart2);

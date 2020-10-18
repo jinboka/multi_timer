@@ -22,6 +22,7 @@ const OVERTIMER_st3 = "overTimerStart3";
 var TimeId3;
 const OVERTIME_LS3 = "overLs3";
 const COUNT_LS3 = "count_ls3";
+const timeSecLS3 = "timeSecLS3"
 var audioArror3;
 var foraudioInterval3;
 var pousedAudio3;
@@ -39,6 +40,7 @@ function count3(){
     if(time3 > 0){
        if(count_ls3 == true){
            time3--;
+           localStorage.setItem(timeSecLS3,time3);
             console.log(time3);
            form3.classList.add(BLIND3);
            var excutehour3 = Math.floor(time3/3600);
@@ -175,6 +177,7 @@ function handleReset3(){
     
     localStorage.removeItem(TIME_LS3);
     localStorage.removeItem(OVERTIME_LS3);
+    localStorage.removeItem(timeSecLS3);
     
     timer3.innerHTML="00:00:00";
     
@@ -202,9 +205,9 @@ function handlestBT3(){
   timerStop3.classList.add(SHOW3);
      TimeId3 = setInterval(count3,1000);
     stBT3.classList.toggle(SHOW3);
-    var forAudioStart3 = parseInt(localStorage.getItem(TIME_LS3));
+    var forAudioStart3 = parseInt(localStorage.getItem(timeSecLS3));
     audioStart3 = setTimeout(audioPlay3,forAudioStart3*1000+1000);
-    foraudioInterval3 = setTimeout(handleAudioInterval3,forAud3oStart3*1000+1000);
+    foraudioInterval3 = setTimeout(handleAudioInterval3,forAudioStart3*1000+1000);
     console.log(forAudioStart3);
 }
 
