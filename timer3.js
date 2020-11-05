@@ -28,6 +28,18 @@ var foraudioInterval3;
 var pousedAudio3;
 var time3;
 
+//시간을 클릭으로 추가하는 버튼 시작
+const ADD_SEC3= document.querySelector(".addInputSec3");
+const ADD_01SEC3 = document.querySelector(".add01_3"),
+      ADD_05SEC3 = document.querySelector(".add05_3"),
+      ADD_10SEC3 = document.querySelector(".add10_3");
+const ADD_TIME3 = document.querySelector(".addTime3"),
+      ADD_01TIME3 = document.querySelector(".addTime01_3"),
+      ADD_05TIME3 = document.querySelector(".addTime05_3"),
+      ADD_10TIME3 = document.querySelector(".addTime10_3");
+
+      //시간추가버튼 변수끝
+
 function audioPlay3(){
  AUDIO3.play();
 }
@@ -89,7 +101,9 @@ function counting3(){
 }
 
 function saveTime3(){ 
-   
+      ADD_SEC3.classList.add(BLIND3);//INPUT VALUE 추가버튼 
+      ADD_TIME3.classList.add(SHOW3);//시간추가버튼 
+
       timer3.classList.add(SHOW3);
       timerStop3.classList.add(SHOW3);
       reset3.classList.add(SHOW3);
@@ -162,6 +176,11 @@ function handleReset3(){
     start3.classList.remove(BLIND3);
     OVER_TIMER_CSS3.classList.remove(OVERTIMER_st3);
     
+    ADD_SEC3.classList.remove(BLIND3);//INPUT VALUE 추가버튼 
+    ADD_TIME3.classList.remove(SHOW3);//시간추가버튼
+
+
+    
       localStorage.removeItem(title_LS3);
       localStorage.removeItem(COUNT_LS3);
 
@@ -230,6 +249,51 @@ function callingTitleInput3(){
  
 }
 
+
+//시간추가버튼 함수시작
+function add01Bt_3(){
+  let currnetValue = minute3.value;
+  minute3.value =  Number(currnetValue)+1;
+ 
+}
+function addTimeBt01_3(){
+   time3 = time3 + 60;
+   clearTimeout(audioStart3);
+   AUDIO4.pause();
+   clearTimeout(foraudioInterval3)
+   clearInterval(pousedAudio3);
+   clearInterval(intervalAudioPlay3);
+   clearInterval(audioArror3);
+  }
+  function add05Bt_3(){
+    let currnetValue = minute3.value;
+    minute3.value =  Number(currnetValue)+5;
+   
+  }
+  function addTimeBt05_3(){
+     time3 = time3 + 300;
+     clearTimeout(audioStart3);
+     AUDIO3.pause();
+     clearTimeout(foraudioInterval3)
+     clearInterval(pousedAudio3);
+     clearInterval(intervalAudioPlay3);
+     clearInterval(audioArror3);
+    }
+    function add10Bt_3(){
+      let currnetValue = minute3.value;
+      minute3.value =  Number(currnetValue)+10;
+     
+    }
+    function addTimeBt10_3(){
+       time3 = time3 + 600;
+       clearTimeout(audioStart3);
+       AUDIO3.pause();
+       clearTimeout(foraudioInterval3)
+       clearInterval(pousedAudio3);
+       clearInterval(intervalAudioPlay3);
+       clearInterval(audioArror3);
+      }
+//시간추가버튼 함수 끝
 function init3(){
     
     form3.addEventListener("submit", handleSumbit3);
@@ -241,7 +305,17 @@ function init3(){
     TITLE_INPUT3.addEventListener("click",handleTitleInput3);
     reset3.addEventListener("click", handleReset3);
     stBT3.addEventListener("click",handlestBT3);
-    callingTitleInput3();
+    callingTitleInput3(); 
+    //시간추가 이벤트 핸들러
+    ADD_01SEC3.addEventListener("click",add01Bt_3);
+    ADD_01TIME3.addEventListener("click",addTimeBt01_3);
+    ADD_05SEC3.addEventListener("click",add05Bt_3);
+    ADD_05TIME3.addEventListener("click",addTimeBt05_3);
+    ADD_10SEC3.addEventListener("click",add10Bt_3);
+    ADD_10TIME3.addEventListener("click",addTimeBt10_3);
+    //시간추가 이베트 핸들러 끝
+
+
     
 }
 init3();

@@ -11,7 +11,7 @@ body{background-color: rgb(195, 222, 245);}
 .minute,.second{margin-left: -10px;}
 .content1 .stop{margin-top: 1px; }
 .content1 .reset{margin-top: 1px; }
-.addTime1{display: none;} /*타이머시간추가버튼*/
+.addTime{display: none;} /*타이머시간추가버튼*/
 .colon{width: 9px;}
 .content1 .submit{cursor: pointer;border: 0;  color: rgb(2, 3, 78); width: 50px; height: 25px; background-color: rgb(23, 20, 216); border-radius: 15px; color: aliceblue; font-size: 0.3em; padding: 2px 0; line-height: 23px;margin-left: 15px; }
 .content1 .submitWrap{height: 25px; margin-top: -20px ;}

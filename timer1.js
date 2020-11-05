@@ -28,6 +28,18 @@ var foraudioInterval;
 var pousedAudio;
 var time;
 
+//시간을 클릭으로 추가하는 버튼 시작
+const ADD_SEC= document.querySelector(".addInputSec");
+const ADD_01SEC = document.querySelector(".add01"),
+      ADD_05SEC = document.querySelector(".add05"),
+      ADD_10SEC = document.querySelector(".add10");
+const ADD_TIME = document.querySelector(".addTime"),
+      ADD_01TIME = document.querySelector(".addTime01"),
+      ADD_05TIME = document.querySelector(".addTime05"),
+      ADD_10TIME = document.querySelector(".addTime10");
+
+      //시간추가버튼 변수
+
 function audioPlay(){
  AUDIO.play();
 }
@@ -89,7 +101,8 @@ function counting(){
 }
 
 function saveTime(){ 
-   
+  ADD_SEC.classList.add(BLIND);//INPUT VALUE 추가버튼 
+  ADD_TIME.classList.add(SHOW);//시간추가버튼 
       timer.classList.add(SHOW);
       timerStop.classList.add(SHOW);
       reset.classList.add(SHOW);
@@ -155,6 +168,9 @@ function audioPause(){
   AUDIO.pause();
 }
 function handleReset(){
+    ADD_SEC.classList.remove(BLIND);//INPUT VALUE 추가버튼 
+    ADD_TIME.classList.remove(SHOW);//시간추가버튼
+    
     clearTimeout(TimeId); 
     form.classList.remove(BLIND);
     timer.classList.remove(SHOW);
@@ -232,6 +248,50 @@ function callingTitleInput(){
  
 }
 
+//시간추가버튼 함수시작
+function add01Bt(){
+  let currnetValue = minute.value;
+  minute.value =  Number(currnetValue)+1;
+ 
+}
+function addTimeBt01(){
+   time = time + 60;
+   clearTimeout(audioStart);
+   AUDIO.pause();
+   clearTimeout(foraudioInterval)
+   clearInterval(pousedAudio);
+   clearInterval(intervalAudioPlay);
+   clearInterval(audioArror);
+  }
+  function add05Bt(){
+    let currnetValue = minute.value;
+    minute.value =  Number(currnetValue)+5;
+   
+  }
+  function addTimeBt05(){
+     time= time + 300;
+     clearTimeout(audioStart);
+     AUDIO.pause();
+     clearTimeout(foraudioInterval)
+     clearInterval(pousedAudio);
+     clearInterval(intervalAudioPlay);
+     clearInterval(audioArror);
+    }
+    function add10Bt(){
+      let currnetValue = minute.value;
+      minute.value =  Number(currnetValue)+10;
+     
+    }
+    function addTimeBt10(){
+       time = time + 600;
+       clearTimeout(audioStart);
+       AUDIO.pause();
+       clearTimeout(foraudioInterval)
+       clearInterval(pousedAudio);
+       clearInterval(intervalAudioPlay);
+       clearInterval(audioArror);
+      }
+//시간추가버튼 함수 끝
 function init(){
     
     form.addEventListener("submit", handleSumbit);
@@ -244,6 +304,15 @@ function init(){
     reset.addEventListener("click", handleReset);
     stBT.addEventListener("click",handlestBT);
     callingTitleInput();
+
+     //시간추가 이벤트 핸들러
+     ADD_01SEC.addEventListener("click",add01Bt);
+     ADD_01TIME.addEventListener("click",addTimeBt01);
+     ADD_05SEC.addEventListener("click",add05Bt);
+     ADD_05TIME.addEventListener("click",addTimeBt05);
+     ADD_10SEC.addEventListener("click",add10Bt);
+     ADD_10TIME.addEventListener("click",addTimeBt10);
+     //시간추가 이베트 핸들러 끝
     
 }
 init();

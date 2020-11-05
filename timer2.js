@@ -28,6 +28,18 @@ var foraudioInterval2;
 var pousedAudio2;
 var time2;
 
+//시간을 클릭으로 추가하는 버튼 시작
+const ADD_SEC2= document.querySelector(".addInputSec2");
+const ADD_01SEC2 = document.querySelector(".add01_2"),
+      ADD_05SEC2 = document.querySelector(".add05_2"),
+      ADD_10SEC2 = document.querySelector(".add10_2");
+const ADD_TIME2 = document.querySelector(".addTime2"),
+      ADD_01TIME2 = document.querySelector(".addTime01_2"),
+      ADD_05TIME2 = document.querySelector(".addTime05_2"),
+      ADD_10TIME2 = document.querySelector(".addTime10_2");
+
+      //시간추가버튼 변수
+
 function audioPlay2(){
  AUDIO2.play();
 }
@@ -89,7 +101,9 @@ function counting2(){
 }
 
 function saveTime2(){ 
-   
+      ADD_SEC2.classList.add(BLIND2);//INPUT VALUE 추가버튼 
+      ADD_TIME2.classList.add(SHOW2);//시간추가버튼 
+ 
       timer2.classList.add(SHOW2);
       timerStop2.classList.add(SHOW2);
       reset2.classList.add(SHOW2);
@@ -153,6 +167,10 @@ function audioPause2(){
   AUDIO2.pause();
 }
 function handleReset2(){
+    ADD_SEC2.classList.remove(BLIND2);//INPUT VALUE 추가버튼 
+    ADD_TIME2.classList.remove(SHOW2);//시간추가버튼
+
+
     clearTimeout(TimeId2); 
     form2.classList.remove(BLIND2);
     timer2.classList.remove(SHOW2);
@@ -229,6 +247,50 @@ function callingTitleInput2(){
 
  
 }
+//시간추가버튼 함수시작
+function add01Bt_2(){
+  let currnetValue = minute2.value;
+  minute2.value =  Number(currnetValue)+1;
+ 
+}
+function addTimeBt01_2(){
+   time2 = time2 + 60;
+   clearTimeout(audioStart2);
+   AUDIO2.pause();
+   clearTimeout(foraudioInterval2)
+   clearInterval(pousedAudio2);
+   clearInterval(intervalAudioPlay2);
+   clearInterval(audioArror2);
+  }
+  function add05Bt_2(){
+    let currnetValue = minute2.value;
+    minute2.value =  Number(currnetValue)+5;
+   
+  }
+  function addTimeBt05_2(){
+     time2= time2 + 300;
+     clearTimeout(audioStart2);
+     AUDIO2.pause();
+     clearTimeout(foraudioInterval2)
+     clearInterval(pousedAudio2);
+     clearInterval(intervalAudioPlay2);
+     clearInterval(audioArror2);
+    }
+    function add10Bt_2(){
+      let currnetValue = minute2.value;
+      minute2.value =  Number(currnetValue)+10;
+     
+    }
+    function addTimeBt10_2(){
+       time2 = time2 + 600;
+       clearTimeout(audioStart2);
+       AUDIO2.pause();
+       clearTimeout(foraudioInterval2)
+       clearInterval(pousedAudio2);
+       clearInterval(intervalAudioPlay2);
+       clearInterval(audioArror2);
+      }
+//시간추가버튼 함수 끝
 
 function init2(){
     
@@ -242,6 +304,15 @@ function init2(){
     reset2.addEventListener("click", handleReset2);
     stBT2.addEventListener("click",handlestBT2);
     callingTitleInput2();
+
+    //시간추가 이벤트 핸들러
+    ADD_01SEC2.addEventListener("click",add01Bt_2);
+    ADD_01TIME2.addEventListener("click",addTimeBt01_2);
+    ADD_05SEC2.addEventListener("click",add05Bt_2);
+    ADD_05TIME2.addEventListener("click",addTimeBt05_2);
+    ADD_10SEC2.addEventListener("click",add10Bt_2);
+    ADD_10TIME2.addEventListener("click",addTimeBt10_2);
+    //시간추가 이베트 핸들러 끝
     
 }
 init2();
