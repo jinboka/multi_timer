@@ -28,7 +28,7 @@ body{background-color: rgb(195, 222, 245);}
 .overTimerStart{color: rgb(148, 35, 35); font-size: 20px;}
 br{height: 10px;}
 /* 시간추가버튼 */
-.add01, .add05, .add10, .addTime01, .addTime05, .addTime10{border-radius: 5px; font-size: 0.5em; padding: 0 2px; background-color: rgb(54, 51, 51); color: #fff; font-weight: 100;}
+.add01, .add05, .add10, .addTime01, .addTime05, .addTime10{ border-radius: 5px; font-size: 0.5em; padding: 0 2px; background-color: rgb(54, 51, 51); color: #fff; font-weight: 100;}
 .addInputText, .addTimeText{font-size: 1em; font-weight: 800; margin-right: -5px;}
 /* 시간추가버튼 */
 /* contet1 end */
