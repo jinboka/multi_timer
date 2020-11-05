@@ -23,6 +23,18 @@ var TimeId4;
 const OVERTIME_LS4 = "overLs4";
 const COUNT_LS4 = "count_ls4";
 const timeSecLS4 = "timeSecLS4"
+//시간을 클릭으로 추가하는 버튼 시작
+const ADD_SEC4= document.querySelector(".addInputSec4");
+const ADD_01SEC4 = document.querySelector(".add01_4"),
+      ADD_05SEC4 = document.querySelector(".add05_4"),
+      ADD_10SEC4 = document.querySelector(".add10_4");
+const ADD_TIME4 = document.querySelector(".addTime4"),
+      ADD_01TIME4 = document.querySelector(".addTime01_4"),
+      ADD_05TIME4 = document.querySelector(".addTime05_4"),
+      ADD_10TIME4 = document.querySelector(".addTime10_4");
+
+      //시간추가버튼 변수끝
+
 
 var audioArror4;
 var foraudioInterval4;
@@ -88,7 +100,10 @@ function counting4(){
     timer4.innerText = `${excutehour4 <10 ? `0${excutehour4}`: `${excutehour4}`}:${excuteMinute4 <10 ? `0${excuteMinute4}`: `${excuteMinute4}`}:${excuteSec4 <10 ? `0${excuteSec4}`: `${excuteSec4}`}`;
     TimeId4 = setInterval(count4,1000);
 }
- function saveTime4(){    
+ function saveTime4(){  
+      ADD_SEC4.classList.add(BLIND4);//INPUT VALUE 추가버튼 
+      ADD_TIME4.classList.add(SHOW4);//시간추가버튼
+        
       timer4.classList.add(SHOW4);
       timerStop4.classList.add(SHOW4);
       reset4.classList.add(SHOW4);
@@ -107,7 +122,8 @@ function counting4(){
           reset4.classList.remove(SHOW4);
           
         }
-        else{audioStart4 = setTimeout(audioPlay4,time4*1000);
+        else{
+        audioStart4 = setTimeout(audioPlay4,time4*1000);
         form4.classList.add(BLIND4);
         counting4();
         localStorage.setItem(OVERTIME_LS4,JSON.stringify(true));
@@ -132,6 +148,7 @@ function handleStop4(){
     clearInterval(pousedAudio4);
     clearInterval(intervalAudioPlay4);
     clearInterval(audioArror4);
+    // clearTimeout(addTimeAudioStart4);//시간추가버튼으로 시작된오디오 정지
     
 }
       
@@ -160,6 +177,10 @@ function handleReset4(){
     reset4.classList.remove(SHOW4);
     start4.classList.remove(BLIND4);
     
+    ADD_SEC4.classList.remove(BLIND4);//INPUT VALUE 추가버튼 
+    ADD_TIME4.classList.remove(SHOW4);//시간추가버튼
+    // clearTimeout(addTimeAudioStart4);//시간추가버튼으로 시작된오디오 정지
+
     localStorage.removeItem(title_LS4);
     localStorage.removeItem(COUNT_LS4);
     OVER_TIMER_CSS4.classList.remove(OVERTIMER_st4);
@@ -227,6 +248,50 @@ function callingTitleInput4(){
     
     }
    }
+//시간추가버튼 함수시작
+function add01Bt_4(){
+  let currnetValue = minute4.value;
+  minute4.value =  Number(currnetValue)+1;
+ 
+}
+function addTimeBt01_4(){
+   time4 = time4 + 60;
+   clearTimeout(audioStart4);
+   AUDIO4.pause();
+   clearTimeout(foraudioInterval4)
+   clearInterval(pousedAudio4);
+   clearInterval(intervalAudioPlay4);
+   clearInterval(audioArror4);
+  }
+  function add05Bt_4(){
+    let currnetValue = minute4.value;
+    minute4.value =  Number(currnetValue)+5;
+   
+  }
+  function addTimeBt05_4(){
+     time4 = time4 + 300;
+     clearTimeout(audioStart4);
+     AUDIO4.pause();
+     clearTimeout(foraudioInterval4)
+     clearInterval(pousedAudio4);
+     clearInterval(intervalAudioPlay4);
+     clearInterval(audioArror4);
+    }
+    function add10Bt_4(){
+      let currnetValue = minute4.value;
+      minute4.value =  Number(currnetValue)+10;
+     
+    }
+    function addTimeBt10_4(){
+       time4 = time4 + 600;
+       clearTimeout(audioStart4);
+       AUDIO4.pause();
+       clearTimeout(foraudioInterval4)
+       clearInterval(pousedAudio4);
+       clearInterval(intervalAudioPlay4);
+       clearInterval(audioArror4);
+      }
+//시간추가버튼 함수 끝
 function init4(){
     
     form4.addEventListener("submit", handleSumbit4);
@@ -239,7 +304,14 @@ function init4(){
     reset4.addEventListener("click", handleReset4);
     stBT4.addEventListener("click",handlestBT4);
     callingTitleInput4();
-    
+    //시간추가 이벤트 핸들러
+    ADD_01SEC4.addEventListener("click",add01Bt_4);
+    ADD_01TIME4.addEventListener("click",addTimeBt01_4);
+    ADD_05SEC4.addEventListener("click",add05Bt_4);
+    ADD_05TIME4.addEventListener("click",addTimeBt05_4);
+    ADD_10SEC4.addEventListener("click",add10Bt_4);
+    ADD_10TIME4.addEventListener("click",addTimeBt10_4);
+    //시간추가 이베트 핸들러 끝
 }
 init4();
 
